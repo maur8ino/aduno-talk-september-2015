@@ -1,0 +1,26 @@
+{
+  "name": "aduno-talk",
+  "version": "1.0.0",
+  "description": "Source code of my talk/workshop \"Javascript Test Dummies\" for Aduno",
+  "main": "index.js",
+  "scripts": {
+    "test": "karma start karma.conf.js",
+    "test-watch": "karma start karma.conf.js --auto-watch --no-single-run",
+    "serve": "http-server . -p 3000 -s"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/maur8ino/milanojs-talk-july-2015.git"
+  },
+  "author": "Mauro Verrocchio <mauroverrocchio@gmail.com>",
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {
+    "http-server": "^0.8.0",
+    "jasmine-core": "^2.3.4",
+    "karma": "^0.12.37",
+    "karma-chrome-launcher": "^0.2.0",
+    "karma-jasmine": "^0.3.6",
+    "karma-phantomjs-launcher": "^0.2.0"
+  }
+}

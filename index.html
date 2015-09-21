@@ -1,0 +1,43 @@
+<!doctype html>
+<html ng-app="GithubSearchApp">
+  <head>
+    <meta charset="utf-8">
+    <title>Javascript test dummies</title>
+    <style>
+     [ng\:cloak], [ng-cloak], .ng-cloak {
+       display: none !important;
+     }
+     .github-search {
+       width: 400px;
+       margin: 0 auto;
+       font-size: 14px;
+     }
+     form {
+       text-align: center;
+     }
+    </style>
+  </head>
+  <body>
+    <div id="content" class="github-search" ng-controller="GithubSearchCtrl as vm" ng-cloak>
+      <form class="username" ng-submit="vm.submitUsername($event)">
+        <input type="text" ng-model="vm.selectedUser" ng-disabled="vm.loading">
+        <button type="submit" ng-disabled="vm.loading">Search</button>
+      </form>
+      <form class="repo-list" ng-submit="vm.submitRepo($event)" ng-show="vm.username">
+        <select ng-disabled="vm.loading" ng-model="vm.selectedRepo" ng-options="item as item.name for item in vm.repoList track by item.id"></select>
+        <button type="submit" ng-disabled="vm.loading">Search</button>
+      </form>
+      <ul class="repo-info" ng-show="vm.repo">
+        <li><b>Name:</b> {{vm.repo.name}}</li>
+        <li><b>Description:</b> {{vm.repo.description}}</li>
+        <li><b>Homepage:</b> {{vm.repo.homepage}}</li>
+        <li><b>Language:</b> {{vm.repo.language}}</li>
+        <li><b>Stars:</b> {{vm.repo.stargazers_count}}</li>
+      </ul>
+    </div>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="src/app.js"></script>
+    <script src="src/GithubSearchModule.js"></script>
+    <script src="src/GithubSearchServiceModule.js"></script>
+  </body>
+</html>
