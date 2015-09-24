@@ -36,6 +36,7 @@ describe('Controller: GithubSearchCtrl', function () {
   it('should call submitUsername and get a $q promise', function () {
     sutCtrl.selectedUser = 'maur8ino';
     sutCtrl.submitUsername(dummyEvent);
+    expect(sutCtrl.loading).toBeTruthy();
 
     deferred.resolve([]);
     $rootScope.$digest();

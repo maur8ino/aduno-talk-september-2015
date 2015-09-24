@@ -2,32 +2,26 @@
 
 (function() {
   'use strict';
-  function GithubSearchService($q, $timeout) {
-    function getUserReposList(user) {
+  function GithubSearchService($q, $http) {
+    function getUserReposList(username) {
       var deferred = $q.defer();
-      $timeout(function() {
-        deferred.resolve([{
-          id: 37024234,
-          name: 'react-bem-mixin',
-          full_name: 'maur8ino/react-bem-mixin',
-          html_url: 'https://github.com/maur8ino/react-bem-mixin',
-          description: 'A React.js mixin for generating BEM class names'
-        }]);
-      }, 1500);
+      $http.get('https://api.github.com/users/' + username + '/repos')
+        .then(function(result) {
+          deferred.resolve(result.data);
+        }, function(result) {
+          deferred.reject(result);
+        });
       return deferred.promise;
     }
 
-    function getUserRepo(user, repo) {
+    function getUserRepo(username, reponame) {
       var deferred = $q.defer();
-      $timeout(function() {
-        deferred.resolve({
-          id: 37024234,
-          name: 'react-bem-mixin',
-          full_name: 'maur8ino/react-bem-mixin',
-          html_url: 'https://github.com/maur8ino/react-bem-mixin',
-          description: 'A React.js mixin for generating BEM class names'
+      $http.get('https://api.github.com/repos/' + username + '/' + reponame)
+        .then(function(result) {
+          deferred.resolve(result.data);
+        }, function(result) {
+          deferred.reject(result);
         });
-      }, 1500);
       return deferred.promise;
     }
 
@@ -38,5 +32,5 @@
   }
   angular
     .module('GithubSearchServiceModule', [])
-    .service('GithubSearchService', ['$q', '$timeout', GithubSearchService]);
+    .service('GithubSearchService', GithubSearchService);
 })();

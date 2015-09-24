@@ -33,7 +33,7 @@
           return;
         }
         vm.loading = true;
-        GithubSearchService.getUserRepo(vm.selectedUser, vm.selectedRepo)
+        GithubSearchService.getUserRepo(vm.selectedUser, vm.selectedRepo.name)
           .then(function(response) {
             vm.repo = response;
           }).finally(function() {
