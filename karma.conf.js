@@ -19,7 +19,8 @@ module.exports = function (config) {
     // level of logging
     logLevel: config.LOG_INFO,
 
-    browsers: process.env.PHANTOMJS ? ['PhantomJS'] : ['Chrome'],
+    browsers: ['Chrome'],
+    reporters: ['mocha'],
 
     //autoWatch: true,
     singleRun: true
